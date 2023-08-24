@@ -1,5 +1,5 @@
-import { Component, createSignal, useTransition } from 'solid-js';
-import { Cartridge, cartridges } from './models/cartridges';
+import { type Component, createSignal, useTransition } from 'solid-js';
+import { type Cartridge, cartridges } from './models/cartridges';
 
 import logo from './static.gif';
 
@@ -11,7 +11,8 @@ enum TransitionStage {
 }
 
 const [page, setPage] = createSignal<Cartridge>(cartridges[0]);
-const [transitionStage, setTransitionStage] = createSignal<TransitionStage>(TransitionStage.Out);
+const [transitionStage, setTransitionStage] =
+	createSignal<TransitionStage>(TransitionStage.Out);
 
 var nextCartridge: Cartridge = page();
 
@@ -20,7 +21,7 @@ const switchCartridge = (cartridge: Cartridge) => {
 	startTransition(() => {setPage(cartridge)});
 };
 
-const startTransition = (func) => {
+const startTransition = (func: Function) => {
 	setTransitionStage(TransitionStage.In);
 	setTimeout(() => {
 		func();
@@ -37,8 +38,10 @@ const CrtContainer: Component = () => {
 		<div class={crtStyles.tv}>
 			<div>
 				<div classList={{
-					[crtStyles.fadeIn]: transitionStage() === TransitionStage.In,
-					[crtStyles.fadeOut]: transitionStage() === TransitionStage.Out
+					[crtStyles.fadeIn]:
+						transitionStage() === TransitionStage.In,
+					[crtStyles.fadeOut]:
+						transitionStage() === TransitionStage.Out
 				}}>	
 					{page().component}
 				</div>

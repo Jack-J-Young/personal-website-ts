@@ -14,9 +14,9 @@ class Animation {
 		try {
 			var lastKeyframe = this.keyframes[0];
 			
-			var [getClass, setClass] = createSignal<string>(lastKeyframe.className);
-			this.getClass = getClass;
-			this.setClass = setClass;
+			var signalParts = createSignal<string>(lastKeyframe.className);
+			this.getClass = signalParts[0];
+			this.setClass = signalParts[1];
 		} catch (error) {
 			if (error instanceof RangeError) {
 				throw new Error('No Keyframes Provided');
@@ -47,9 +47,14 @@ class Animation {
 	}
 	
 	// Toggles animation direction at start and end, running a callback for each side
-	public bounceToggleCallBack(offCallback: Function, onCallback: Function): void {
-		console.log(offCallback);
-		offCallback();
+	public bounceToggleCallBack(onCallback: Function,
+	                            offCallback: Function,
+	                            setState: boolean | null = null): void {
+		if (setState != null) {
+			if (setState && !this.toggleState) this.toggle();
+			if (!setState && this.toggleState) this.toggle();
+		}
+		let callback: Function = this.toggleState ? onCallback : offCallback;
 		let functions: Function[] = [];
 		
 		for(let i = 0; i < this.keyframes.length; i++) {
@@ -58,13 +63,12 @@ class Animation {
 			functions.push(() => {
 				this.setClass(frame.className)
 				setTimeout(() => {
-					(i === 0 ? offCallback : functions[i-1])();
+					(i === 0 ? callback : functions[i-1])();
 				},
 				frame.length);
 			});
 		}
 		this.toggle();
-		console.log(functions.length-1);
 		functions[functions.length-1]();
 	}
 
@@ -73,7 +77,7 @@ class Animation {
 	}
 }
 
-type Keyframe = {
+export type Keyframe = {
 	length: number;
 	className: string;
 }
