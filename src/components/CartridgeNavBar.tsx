@@ -4,14 +4,13 @@ import { Cartridge, cartridges } from './models/cartridges';
 import navStyles from './CartridgeNavBar.module.css';
 
 import { switchCartridge } from './CrtContainer';
+import { CartridgeElement } from './CartridgeElement';
 
 const CartridgeNavBar: Component = () => {
 	return (
 		<div class={navStyles.shelf}>
 			<For each={cartridges}>{(cartridge, i) =>
-				<div class={navStyles.cartridge} style={{ cursor: "pointer" }} on:click={() => switchCartridge(cartridge)}>
-					{cartridge.name}
-				</div>
+				<CartridgeElement/>
 			}</For>
 		</div>
 	);
