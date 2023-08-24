@@ -1,0 +1,10 @@
+.shelf {
+	background: brown;
+	width: 100%;
+	height: 100%;
+}
+
+.cartridge {
+	background: pink;
+	margin: 1px;
+}

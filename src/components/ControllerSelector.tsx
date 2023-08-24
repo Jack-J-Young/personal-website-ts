@@ -1,8 +1,10 @@
 import type { Component } from 'solid-js';
 
+import controllersStyles from './ControllerSelector.module.css';
+
 const ControllerSelector: Component = () => {
 	return (
-		<div>
+		<div class={controllersStyles.box}>
 			Controller
 		</div>
 	);

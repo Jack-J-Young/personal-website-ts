@@ -3,7 +3,7 @@ import { Cartridge, cartridges } from './models/cartridges';
 
 import logo from './static.gif';
 
-import crtStyles from './CrtContainer.module.css';
+import crtStyles from './Cartridge.module.css';
 
 enum TransitionStage {
 	In = 1,
@@ -32,7 +32,7 @@ const endTransition = () => {
 	setTransitionStage(TransitionStage.Out);
 };
 
-const CrtContainer: Component = () => {
+const Cartridge: Component = () => {
 	return (
 		<div class={crtStyles.tv}>
 			<div>
@@ -48,4 +48,4 @@ const CrtContainer: Component = () => {
 	);
 };
 
-export { CrtContainer, setPage, page, switchCartridge };
+export { Cartridge, setPage, page, switchCartridge };

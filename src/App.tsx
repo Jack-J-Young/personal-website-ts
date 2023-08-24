@@ -2,7 +2,7 @@ import type { Component } from 'solid-js';
 
 import styles from './App.module.css';
 
-import CrtContainer from './components/CrtContainer';
+import { CrtContainer }  from './components/CrtContainer';
 import CartridgeNavBar from './components/CartridgeNavBar';
 import Console from './components/Console';
 import ControllerSelector from './components/ControllerSelector';
@@ -18,8 +18,12 @@ const App: Component = () => {
 					<CrtContainer />
 				</div>
 				<div class={styles.consoleSection}>
-					<Console />
-					<ControllerSelector />
+					<div class={styles.consoleBox}>
+						<Console />
+					</div>
+					<div class={styles.controllerBox}>
+						<ControllerSelector />
+					</div>
 				</div>
 			</div>
 		</div>

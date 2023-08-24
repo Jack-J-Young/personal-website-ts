@@ -1,0 +1,79 @@
+:root {
+	--crt-rad: 50px;
+}
+
+.tv {
+	width: 100%;
+	height: 100%;
+	border-radius: var(--crt-rad) / 50%;
+	overflow: hidden;
+}
+
+.tv > div {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	border-radius: 50% / var(--crt-rad);
+	background: yellow;
+	overflow: hidden;
+}
+
+.tv > div > div {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	transition-property: opacity;
+  	transition-duration: 0.2s;
+  	transition-timing-function: ease-in-out;
+	/*background: purple;*/
+}
+
+.tv > div > div > div {
+	width: 100%;
+	height: 100%;
+	padding: var(--crt-rad);
+	/*background: purple;*/
+}
+
+.static {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	z-index: 0;
+}
+
+.fadeOut {
+	opacity: 1;
+}
+
+.fadeIn {
+	opacity: 0;
+}
+
+/* .tv:after{
+	content:'';
+	position:absolute;
+	height: 200%;
+	width: 100%;
+	top: -50%;
+	left: 0;
+	right: 0;
+	transform: rotate(90deg);
+	border-radius:inherit;
+	background:#000;
+}
+
+.tv:after:after{
+	content:'';
+	position:absolute;
+	height: 200%;
+	width: 100%;
+	top: -50%;
+	left: 0;
+	right: 0;
+	transform: rotate(90deg);
+	border-radius:inherit;
+	background:#000;
+} */
