@@ -5,8 +5,8 @@ class Animation {
 	
 	private toggleState: boolean = false;
 
-	private getClass: Accessor<string>;
-	private setClass: Setter<string>;
+	private getStyle: Accessor<object>;
+	private setStyle: Setter<object>;
 	
 	public constructor(keyframes: Keyframe[]) {
 		this.keyframes = keyframes;
@@ -14,9 +14,9 @@ class Animation {
 		try {
 			var lastKeyframe = this.keyframes[0];
 			
-			var signalParts = createSignal<string>(lastKeyframe.className);
-			this.getClass = signalParts[0];
-			this.setClass = signalParts[1];
+			var signalParts = createSignal<object>(lastKeyframe.styleObject);
+			this.getStyle = signalParts[0];
+			this.setStyle = signalParts[1];
 		} catch (error) {
 			if (error instanceof RangeError) {
 				throw new Error('No Keyframes Provided');
@@ -37,7 +37,7 @@ class Animation {
 		for (const frame of this.keyframes.reverse()) {
 			var func = () => {
 				setTimeout(() => {
-					this.setClass(frame.className);
+					this.setStyle(frame.styleObject);
 					lastFunc();
 				}, frame.length);
 			}
@@ -61,7 +61,7 @@ class Animation {
 			let frame = this.keyframes[i];
 				
 			functions.push(() => {
-				this.setClass(frame.className)
+				this.setStyle(frame.styleObject)
 				setTimeout(() => {
 					(i === 0 ? callback : functions[i-1])();
 				},
@@ -72,14 +72,14 @@ class Animation {
 		functions[functions.length-1]();
 	}
 
-	public classSignal(): string {
-		return this.getClass();
+	public styleSignal(): object {
+		return this.getStyle();
 	}
 }
 
 export type Keyframe = {
 	length: number;
-	className: string;
+	styleObject: object;
 }
 
 export { Animation };

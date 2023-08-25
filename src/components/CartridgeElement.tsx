@@ -1,40 +1,20 @@
-import { Component, createSignal, useTransition } from 'solid-js';
+import { type Component } from 'solid-js';
 
-import { Animation } from './Animation';
+import navStyles from './CartridgeNavBar.module.css';
 
-import cartStyles from './CartridgeElement.module.css';
+import { CartridgeMetaData } from './models/cartridges';
 
-//const moveAnimation: Animation = new Animation();
-// 
-//moveAnimation.keyframes = [];
-//moveAnimation.
-
-const CartridgeElement: Component = () => {
-	var moveAnimation: Animation = new Animation([
-		                 {
-			                 length: 200,
-			                 className: cartStyles.left
-		                 },
-		                 {
-			                 length: 200,
-			                 className: cartStyles.rest
-		                 },
-		                 {
-			                 length: 500,
-			                 className: cartStyles.test
-		                 }
-	                 ]);
-	
-	function startAnim() {
-		console.log("test");
-		moveAnimation.bounceToggleCallBack((() => {console.log("a")}), (() => {console.log("b")})); 
+export function CreateCartridgeElement(cartridgeMetaData: CartridgeMetaData): Component {
+	return () => {
+		return (
+			<div class={navStyles.cartridgeWrap}>
+				<div class={navStyles.cartridge}
+				     style={cartridgeMetaData.animation.styleSignal()}
+					 onclick={() => cartridgeMetaData.animate()}
+				>
+					{cartridgeMetaData.cartridge.name}
+				</div>
+			</div>
+		);
 	}
-	
-	return (
-		<div class={moveAnimation.classSignal()} on:click={startAnim}>
-			Test
-		</div>
-	);
 };
-
-export { CartridgeElement };

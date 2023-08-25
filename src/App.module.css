@@ -1,30 +1,42 @@
+.aspectWrapper {
+	width: 100vw;
+	height: 100vh;
+	background: #303538;
+	text-align: center;
+}
+
 .pageRoot {
-	margin: 0px;
+	display: inline-block;
+	margin: 0 auto;
 	height: 100%;
-	width: 100%;
-	position: fixed;
+	aspect-ratio: 13 / 9;
 	display: flex;
 	flex-direction: row;
 }
 
 .navBar {
-	flex: 0.2;
+	flex: calc(3 / 13);
+	z-index: 1;
 }
 
 .systemSection {
-	flex: 0.8;
+	flex: calc(10 / 13);
+	margin-left: 10%;
+	margin-right: 10%;
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
+	z-index: 0;
 }
 
 .crtBox {
-	flex: 0.8;
+	flex: calc(6 / 9);
 	position: relative;
+	text-align: center;
 }
 
 .consoleSection {
-	flex: 0.2;
+	flex: calc(3 / 9);
 	display: flex;
 	flex-direction: row;
 }

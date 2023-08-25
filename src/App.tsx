@@ -9,20 +9,22 @@ import ControllerSelector from './components/ControllerSelector';
 
 const App: Component = () => {
 	return (
-		<div class={styles.pageRoot}>
-			<div class={styles.navBar}>
-				<CartridgeNavBar />
-			</div>
-			<div class={styles.systemSection}>
-				<div class={styles.crtBox}>
-					<CrtContainer />
+		<div class={styles.aspectWrapper}>
+			<div class={styles.pageRoot}>
+				<div class={styles.navBar}>
+					<CartridgeNavBar />
 				</div>
-				<div class={styles.consoleSection}>
-					<div class={styles.consoleBox}>
-						<Console />
+				<div class={styles.systemSection}>
+					<div class={styles.crtBox}>
+						<CrtContainer />
 					</div>
-					<div class={styles.controllerBox}>
-						<ControllerSelector />
+					<div class={styles.consoleSection}>
+						<div class={styles.consoleBox}>
+							<Console />
+						</div>
+						<div class={styles.controllerBox}>
+							<ControllerSelector />
+						</div>
 					</div>
 				</div>
 			</div>

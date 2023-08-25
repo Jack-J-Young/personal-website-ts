@@ -35,17 +35,19 @@ const endTransition = () => {
 
 const CrtContainer: Component = () => {
 	return (
-		<div class={crtStyles.tv}>
-			<div>
-				<div classList={{
-					[crtStyles.fadeIn]:
-						transitionStage() === TransitionStage.In,
-					[crtStyles.fadeOut]:
-						transitionStage() === TransitionStage.Out
-				}}>	
-					{page().component}
+		<div class={crtStyles.wrapper}>
+			<div class={crtStyles.tv}>
+				<div>
+					<div classList={{
+						[crtStyles.fadeIn]:
+							transitionStage() === TransitionStage.In,
+						[crtStyles.fadeOut]:
+							transitionStage() === TransitionStage.Out
+					}}>	
+						{page().component}
+					</div>
+					<img src={logo} class={crtStyles.static} />
 				</div>
-				<img src={logo} class={crtStyles.static} />
 			</div>
 		</div>
 	);
